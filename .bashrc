@@ -37,3 +37,10 @@ export NVM_DIR="$HOME/.nvm"
 alias venvactivate="source .venv/bin/activate"
 eval "$(zoxide init bash)"
 alias cd=z
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/nat/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
