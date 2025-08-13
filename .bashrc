@@ -44,3 +44,4 @@ export PATH="$PATH:/home/nat/.lmstudio/bin"
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
+. "$HOME/.cargo/env"
