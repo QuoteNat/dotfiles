@@ -1,0 +1,13 @@
+[unit]
+Description=The openwebui container
+After=local-fs.target
+
+[service]
+Restart=always
+
+[Container]
+ContainerName=openwebui
+Image=ghcr.io/open-webui/open-webui:main
+Volume=open-webui:/app/backend/data 
+PublishPort=3000:8080
+

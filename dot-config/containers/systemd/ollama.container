@@ -1,0 +1,16 @@
+[unit]
+Description=The ollama container
+After=local-fs.target
+
+[service]
+Restart=always
+
+[Container]
+ContainerName=ollama
+Image=docker.io/ollama/ollama
+Volume=ollama:/root/.ollama
+PublishPort=11434:11434
+PodmanArgs=--env OLLAMA_KEEP_ALIVE=1m
+PodmanArgs=--security-opt=label=disable
+PodmanArgs=--hooks-dir=/usr/share/containers/oci/hooks.d/
+PodmanArgs=--device=nvidia.com/gpu=all
