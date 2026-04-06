@@ -1,0 +1,13 @@
+[Unit]
+Description=Language tool container
+After=local-fs.target
+
+[Container]
+Image=docker.io/erikvl87/languagetool
+PublishPort=8010:8010
+Volume=/home/nat/Sources/ngrams:/ngrams
+PodmanArgs=--env langtool_languageModel=/ngrams
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
