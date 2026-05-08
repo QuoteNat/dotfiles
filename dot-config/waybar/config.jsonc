@@ -2,7 +2,7 @@
 {
   "height": 30, // Waybar height (to be removed for auto height)
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": ["cffi/niri-windows", "niri"],
+  "modules-left": ["niri/workspaces", "cffi/niri-windows"],
   "modules-center": ["clock"],
   "modules-right": [
     "mpd",
