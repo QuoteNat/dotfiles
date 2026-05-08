@@ -2,10 +2,7 @@
 {
   "height": 30, // Waybar height (to be removed for auto height)
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": [
-    "cffi/niri-windows",
-    "niri"
-  ],
+  "modules-left": ["cffi/niri-windows", "niri"],
   "modules-center": ["clock"],
   "modules-right": [
     "mpd",
@@ -95,7 +92,7 @@
     "format-icons": ["󰉬", "", "󰉪"],
   },
   "backlight": {
-    // "device": "acpi_video1",
+    "device": "acpi_video1",
     "format": "{percent}% {icon}",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
   },
@@ -177,7 +174,6 @@
       "shutdown": "shutdown",
       "reboot": "reboot",
       "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
     },
   },
   "cffi/niri-windows": {
