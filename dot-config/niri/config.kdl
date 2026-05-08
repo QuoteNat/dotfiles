@@ -207,6 +207,8 @@ spawn-at-startup "mako"
 spawn-at-startup "polkit-kde-authentication-agent-1"
 spawn-sh-at-startup "swaybg -m fill -i /home/nat/Pictures/Wallpapers/birbs/ray-hennessy-GL6ORxDMswI-unsplash.jpg"
 spawn-at-startup "swayidle"
+spawn-at-startup "gammastep"
+spawn-at-startup "gammastep-indicator"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
