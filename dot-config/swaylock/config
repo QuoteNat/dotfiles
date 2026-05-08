@@ -8,3 +8,4 @@ clock
 indicator
 timestr=%I:%M %p
 effect-blur=10x5
+text-color=cba6f7
