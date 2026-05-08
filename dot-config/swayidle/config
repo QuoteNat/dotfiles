@@ -1,4 +1,4 @@
 timeout 301 'niri msg action power-off-monitors'
-timeout 300 'swaylock -f'
-before-sleep 'swaylock -f'
+timeout 300 '/home/nat/Sources/swaylock-effects/build/swaylock -f'
+before-sleep '/home/nat/Sources/swaylock-effects/build/swaylock -f'
 timeout 600 'systemctl suspend'

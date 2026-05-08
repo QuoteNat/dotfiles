@@ -4,3 +4,7 @@ inside-color=1e1e2e
 ring-color=585b70
 key-hl-color=cba6f7
 line-uses-inside
+clock
+indicator
+timestr=%I:%M %p
+effect-blur=10x5
