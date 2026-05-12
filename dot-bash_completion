@@ -1,0 +1,2938 @@
+_rustique() {
+    local i cur prev opts cmd
+    COMPREPLY=()
+    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+        cur="$2"
+    else
+        cur="${COMP_WORDS[COMP_CWORD]}"
+    fi
+    prev="$3"
+    cmd=""
+    opts=""
+
+    for i in "${COMP_WORDS[@]:0:COMP_CWORD}"
+    do
+        case "${cmd},${i}" in
+            ",$1")
+                cmd="rustique"
+                ;;
+            rustique,config)
+                cmd="rustique__subcmd__config"
+                ;;
+            rustique,delete)
+                cmd="rustique__subcmd__delete"
+                ;;
+            rustique,download)
+                cmd="rustique__subcmd__download"
+                ;;
+            rustique,help)
+                cmd="rustique__subcmd__help"
+                ;;
+            rustique,info)
+                cmd="rustique__subcmd__info"
+                ;;
+            rustique,install)
+                cmd="rustique__subcmd__install"
+                ;;
+            rustique,list)
+                cmd="rustique__subcmd__list"
+                ;;
+            rustique,misc)
+                cmd="rustique__subcmd__misc"
+                ;;
+            rustique,modpack)
+                cmd="rustique__subcmd__modpack"
+                ;;
+            rustique,search)
+                cmd="rustique__subcmd__search"
+                ;;
+            rustique,self)
+                cmd="rustique__subcmd__self"
+                ;;
+            rustique,sync)
+                cmd="rustique__subcmd__sync"
+                ;;
+            rustique,update)
+                cmd="rustique__subcmd__update"
+                ;;
+            rustique__subcmd__config,del)
+                cmd="rustique__subcmd__config__subcmd__del"
+                ;;
+            rustique__subcmd__config,help)
+                cmd="rustique__subcmd__config__subcmd__help"
+                ;;
+            rustique__subcmd__config,list)
+                cmd="rustique__subcmd__config__subcmd__list"
+                ;;
+            rustique__subcmd__config,set)
+                cmd="rustique__subcmd__config__subcmd__set"
+                ;;
+            rustique__subcmd__config,table)
+                cmd="rustique__subcmd__config__subcmd__table"
+                ;;
+            rustique__subcmd__config__subcmd__help,del)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__del"
+                ;;
+            rustique__subcmd__config__subcmd__help,help)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__help,list)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__help,set)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__set"
+                ;;
+            rustique__subcmd__config__subcmd__help,table)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table,del)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table,list)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table,reset)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table,set)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del,list)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del,search)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset,list)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset,search)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set,list)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set,search)
+                cmd="rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table,del)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del"
+                ;;
+            rustique__subcmd__config__subcmd__table,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table,reset)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset"
+                ;;
+            rustique__subcmd__config__subcmd__table,set)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help,del)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help,reset)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help,set)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__search"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help,help)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help,list)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help,search)
+                cmd="rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__search"
+                ;;
+            rustique__subcmd__help,config)
+                cmd="rustique__subcmd__help__subcmd__config"
+                ;;
+            rustique__subcmd__help,delete)
+                cmd="rustique__subcmd__help__subcmd__delete"
+                ;;
+            rustique__subcmd__help,download)
+                cmd="rustique__subcmd__help__subcmd__download"
+                ;;
+            rustique__subcmd__help,help)
+                cmd="rustique__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__help,info)
+                cmd="rustique__subcmd__help__subcmd__info"
+                ;;
+            rustique__subcmd__help,install)
+                cmd="rustique__subcmd__help__subcmd__install"
+                ;;
+            rustique__subcmd__help,list)
+                cmd="rustique__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__help,misc)
+                cmd="rustique__subcmd__help__subcmd__misc"
+                ;;
+            rustique__subcmd__help,modpack)
+                cmd="rustique__subcmd__help__subcmd__modpack"
+                ;;
+            rustique__subcmd__help,search)
+                cmd="rustique__subcmd__help__subcmd__search"
+                ;;
+            rustique__subcmd__help,self)
+                cmd="rustique__subcmd__help__subcmd__self"
+                ;;
+            rustique__subcmd__help,sync)
+                cmd="rustique__subcmd__help__subcmd__sync"
+                ;;
+            rustique__subcmd__help,update)
+                cmd="rustique__subcmd__help__subcmd__update"
+                ;;
+            rustique__subcmd__help__subcmd__config,del)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__del"
+                ;;
+            rustique__subcmd__help__subcmd__config,list)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__config,set)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__set"
+                ;;
+            rustique__subcmd__help__subcmd__config,table)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table,del)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table,list)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table,reset)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table,set)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del,list)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del,search)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del__subcmd__search"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset,list)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset,search)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset__subcmd__search"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set,list)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set,search)
+                cmd="rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set__subcmd__search"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,create)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__create"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,delete)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__delete"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,disable)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__disable"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,enable)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__enable"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,info)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__info"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,install)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__install"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,list)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__list"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,local)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__local"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,sync)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__sync"
+                ;;
+            rustique__subcmd__help__subcmd__modpack,update)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__update"
+                ;;
+            rustique__subcmd__help__subcmd__modpack__subcmd__local,delete)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__local__subcmd__delete"
+                ;;
+            rustique__subcmd__help__subcmd__modpack__subcmd__local,list)
+                cmd="rustique__subcmd__help__subcmd__modpack__subcmd__local__subcmd__list"
+                ;;
+            rustique__subcmd__modpack,create)
+                cmd="rustique__subcmd__modpack__subcmd__create"
+                ;;
+            rustique__subcmd__modpack,delete)
+                cmd="rustique__subcmd__modpack__subcmd__delete"
+                ;;
+            rustique__subcmd__modpack,disable)
+                cmd="rustique__subcmd__modpack__subcmd__disable"
+                ;;
+            rustique__subcmd__modpack,enable)
+                cmd="rustique__subcmd__modpack__subcmd__enable"
+                ;;
+            rustique__subcmd__modpack,help)
+                cmd="rustique__subcmd__modpack__subcmd__help"
+                ;;
+            rustique__subcmd__modpack,info)
+                cmd="rustique__subcmd__modpack__subcmd__info"
+                ;;
+            rustique__subcmd__modpack,install)
+                cmd="rustique__subcmd__modpack__subcmd__install"
+                ;;
+            rustique__subcmd__modpack,list)
+                cmd="rustique__subcmd__modpack__subcmd__list"
+                ;;
+            rustique__subcmd__modpack,local)
+                cmd="rustique__subcmd__modpack__subcmd__local"
+                ;;
+            rustique__subcmd__modpack,sync)
+                cmd="rustique__subcmd__modpack__subcmd__sync"
+                ;;
+            rustique__subcmd__modpack,update)
+                cmd="rustique__subcmd__modpack__subcmd__update"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,create)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__create"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,delete)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__delete"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,disable)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__disable"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,enable)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__enable"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,help)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,info)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__info"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,install)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__install"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,list)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__list"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,local)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__local"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,sync)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__sync"
+                ;;
+            rustique__subcmd__modpack__subcmd__help,update)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__update"
+                ;;
+            rustique__subcmd__modpack__subcmd__help__subcmd__local,delete)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__local__subcmd__delete"
+                ;;
+            rustique__subcmd__modpack__subcmd__help__subcmd__local,list)
+                cmd="rustique__subcmd__modpack__subcmd__help__subcmd__local__subcmd__list"
+                ;;
+            rustique__subcmd__modpack__subcmd__local,delete)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__delete"
+                ;;
+            rustique__subcmd__modpack__subcmd__local,help)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__help"
+                ;;
+            rustique__subcmd__modpack__subcmd__local,list)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__list"
+                ;;
+            rustique__subcmd__modpack__subcmd__local__subcmd__help,delete)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__delete"
+                ;;
+            rustique__subcmd__modpack__subcmd__local__subcmd__help,help)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__help"
+                ;;
+            rustique__subcmd__modpack__subcmd__local__subcmd__help,list)
+                cmd="rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__list"
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    case "${cmd}" in
+        rustique)
+            opts="-v -d -m -w -h -V --verbose --debug --mods-dir --with-mpk --help --version sync list update install search config misc download info modpack self delete help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --mods-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -m)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --with-mpk)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -w)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config)
+            opts="-h --help set list del table help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__del)
+            opts="-m -M -p -b -B -g -n -c -P -u -h --mod-dir --modpack-dir --pin-game-version --backup-mods --backup-mods-dir --game-download-dir --notify-of-unzipped-mods --check-for-updates --pinned-mod --modpack-disabled --modpack-enabled --update-default-windows-loc --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pinned-mod)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -P)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --modpack-disabled)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --modpack-enabled)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --update-default-windows-loc)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -u)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help)
+            opts="set list del table help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__del)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__set)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table)
+            opts="set del list reset"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__del__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__reset__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__help__subcmd__table__subcmd__set__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__list)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__set)
+            opts="-m -M -n -p -b -B -g -s -w -P -c -u -h --mods-dir --modpacks-dir --notify-of-unzipped-mods --pin-game-version --backup-mods --backup-mods-dir --game-download-dir --show-execution-time --with-mod --pin-version --modpack-disabled --modpack-enabled --check-for-updates --update-default-windows-loc --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --mods-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -m)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --modpacks-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -M)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --notify-of-unzipped-mods)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -n)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --pin-game-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --backup-mods)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -b)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --backup-mods-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -B)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --game-download-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --show-execution-time)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -s)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --with-mod)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -w)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --pin-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -P)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --modpack-disabled)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --modpack-enabled)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --check-for-updates)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --update-default-windows-loc)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                -u)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table)
+            opts="-h --help set del list reset help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del)
+            opts="-h --help list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help)
+            opts="list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__help__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__list)
+            opts="-H -C -f -F -r -a -h --headers --cells --field --fields --color --attr --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --field)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --fields)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -F)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                -r)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                --attr)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__del__subcmd__search)
+            opts="-H -C -f -F -r -a -h --headers --cells --field --fields --color --attr --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --field)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                --fields)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                -F)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                -r)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                --attr)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help)
+            opts="set del list reset help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__del__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__reset__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__help__subcmd__set__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__list)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset)
+            opts="-h --help list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help)
+            opts="list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__help__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__list)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__reset__subcmd__search)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set)
+            opts="-h --help list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help)
+            opts="list search help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__help__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__list)
+            opts="-H -C -f -F -r -a -h --headers --cells --field --fields --color --attr --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --field)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --fields)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -F)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                -r)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                --attr)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__config__subcmd__table__subcmd__set__subcmd__search)
+            opts="-H -C -f -F -r -a -h --headers --cells --field --fields --color --attr --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --field)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                --fields)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                -F)
+                    COMPREPLY=($(compgen -W "name mod-id downloads follows trending comments summary modid-strs asset-id author url-alias side type tags last-released" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                -r)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                --attr)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -W "bold italic underline reset dim no-hidden" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__delete)
+            opts="-m -b -a -h --mod-id --mod-backups --all --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --mod-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -m)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --all)
+                    COMPREPLY=($(compgen -W "mods backups both" -- "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -W "mods backups both" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__download)
+            opts="-s -g -o -t -w -h --save-dir --game-version --os-type --type --windows-installer-type --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --save-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -s)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --game-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --os-type)
+                    COMPREPLY=($(compgen -W "linux osx windows" -- "${cur}"))
+                    return 0
+                    ;;
+                -o)
+                    COMPREPLY=($(compgen -W "linux osx windows" -- "${cur}"))
+                    return 0
+                    ;;
+                --type)
+                    COMPREPLY=($(compgen -W "server client" -- "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -W "server client" -- "${cur}"))
+                    return 0
+                    ;;
+                --windows-installer-type)
+                    COMPREPLY=($(compgen -W "install update" -- "${cur}"))
+                    return 0
+                    ;;
+                -w)
+                    COMPREPLY=($(compgen -W "install update" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help)
+            opts="sync list update install search config misc download info modpack self delete help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config)
+            opts="set list del table"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__del)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__set)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table)
+            opts="set del list reset"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__del__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__reset__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set)
+            opts="list search"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__config__subcmd__table__subcmd__set__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 6 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__download)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__info)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__install)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__misc)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack)
+            opts="create install update enable disable delete sync list info local"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__create)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__disable)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__enable)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__info)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__install)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__local)
+            opts="list delete"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__local__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__local__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__sync)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__modpack__subcmd__update)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__search)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__self)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__sync)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__help__subcmd__update)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__info)
+            opts="-d -v -h --show-description --show-versions --help [MOD_ID]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --show-versions)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__install)
+            opts="-i -m -w -h --ignore-dependencies --missing-dependencies --help [MOD_IDS]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__list)
+            opts="-u -p -g -e -c -f -h --updates --pinned --game-versions --export-as --columns --file-path --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --game-versions)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --export-as)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                -e)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                --columns)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --file-path)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__misc)
+            opts="-g -o -h --gen-auto-complete --one-click-setup --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --gen-auto-complete)
+                    COMPREPLY=($(compgen -W "bash fish zsh power-shell" -- "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -W "bash fish zsh power-shell" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack)
+            opts="-h --help create install update enable disable delete sync list info local help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__create)
+            opts="-n -m -v -g -d -a -c -w -s -I -C -h --name --mpk-id --mpk-version --game-version --description --author --contact --website --save-path --ignore-modpacks --copy-mods --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --name)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -n)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --mpk-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -m)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --mpk-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --game-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --description)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -d)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --author)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --contact)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --website)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -w)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --save-path)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -s)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__delete)
+            opts="-h --help <MPK_ID>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__disable)
+            opts="-h --help <MPK_ID>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__enable)
+            opts="-f -h --force --help <MPK_ID>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help)
+            opts="create install update enable disable delete sync list info local help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__create)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__disable)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__enable)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__info)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__install)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__local)
+            opts="list delete"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__local__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__local__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__sync)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__help__subcmd__update)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__info)
+            opts="-d -v -h --show-description --show-versions --help [MOD_ID]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --show-versions)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__install)
+            opts="-m -v -h --missing-dependencies --mod-version --help <MOD_ID>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --mod-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__list)
+            opts="-u -p -g -e -c -f -h --updates --pinned --game-versions --export-as --columns --file-path --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --game-versions)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -g)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --export-as)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                -e)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                --columns)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --file-path)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local)
+            opts="-h --help list delete help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__delete)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__help)
+            opts="list delete help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__help__subcmd__list)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 5 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__local__subcmd__list)
+            opts="-e -c -f -h --export-as --columns --file-path --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --export-as)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                -e)
+                    COMPREPLY=($(compgen -W "csv" -- "${cur}"))
+                    return 0
+                    ;;
+                --columns)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "name mod-id version latest-version deps missing-deps changelog description website game-version last-update-local last-update-remote pinned-version has-backup filename mod-url" -- "${cur}"))
+                    return 0
+                    ;;
+                --file-path)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__sync)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__modpack__subcmd__update)
+            opts="-h --help <MPK_ID>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__search)
+            opts="-q -c -f -a -t -s -d -h --query --color --field --author --tag --sort-by --sort-direction --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --query)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -q)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -W "black blue cyan dark-cyan dark-blue green dark-green grey dark-grey magenta dark-magenta red dark-red white yellow dark-yellow reset" -- "${cur}"))
+                    return 0
+                    ;;
+                --field)
+                    COMPREPLY=($(compgen -W "name summary author mod-type side mod-id-str url-alias tags" -- "${cur}"))
+                    return 0
+                    ;;
+                -f)
+                    COMPREPLY=($(compgen -W "name summary author mod-type side mod-id-str url-alias tags" -- "${cur}"))
+                    return 0
+                    ;;
+                --author)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -a)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --tag)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --sort-by)
+                    COMPREPLY=($(compgen -W "mod-id asset-id downloads follows trending comments name author released" -- "${cur}"))
+                    return 0
+                    ;;
+                -s)
+                    COMPREPLY=($(compgen -W "mod-id asset-id downloads follows trending comments name author released" -- "${cur}"))
+                    return 0
+                    ;;
+                --sort-direction)
+                    COMPREPLY=($(compgen -W "asc desc" -- "${cur}"))
+                    return 0
+                    ;;
+                -d)
+                    COMPREPLY=($(compgen -W "asc desc" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__self)
+            opts="-c -u -f -h --check-updates --update --force --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__sync)
+            opts="-s -g -h --sync-search-db --sync-game-versions --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rustique__subcmd__update)
+            opts="-a -k -h --all --keep-old-files --help [MOD_IDS]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+    esac
+}
+
+if [[ "${BASH_VERSINFO[0]}" -eq 4 && "${BASH_VERSINFO[1]}" -ge 4 || "${BASH_VERSINFO[0]}" -gt 4 ]]; then
+    complete -F _rustique -o nosort -o bashdefault -o default rustique
+else
+    complete -F _rustique -o bashdefault -o default rustique
+fi
+
+# Completion script generated. To use it:
+# Save the above output to ~/.local/share/bash-completion/completions/rustique
+# Or run: rustique misc --gen-auto-complete bash > ~/.local/share/bash-completion/completions/rustique
